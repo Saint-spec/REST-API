@@ -1,29 +1,29 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const Subscriber = require("../models/subscriber");
 
-// get all
-router.get('/', (req, res) => {
-    res.send('Hello World')
-})
+//get all
+router.get("/", async (req, res) => {
+  try {
+    const subscribers = await Subscribers.find();
+    res.json(subscribers);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
-//getting one
-router.get('/:id', (req, res) => {
-
-})
+//get one
+router.get("/:id", (req, res) => {
+  res.send(req.params.id);
+});
 
 //creating one
-router.post('/', (req, res) => {
-
-})
+router.post("/", async (req, res) => {});
 
 //updating one
-router.patch('/:id', (req, res) => {
+router.patch("/:id", (req, res) => {});
 
-})
+//deleting one
+router.patch("/:id", (req, res) => {});
 
-//delete one
-router.delete('/:id', (req, res) => {
-
-})
-
-module.exports = router
+module.exports = router;
